@@ -5,7 +5,9 @@ export default function listviews({user_json_data}) {
   return (
     <View style={styles.container}>
       {user_json_data.map(item => (
-        <Text>{item.title}</Text>
+        <Text>
+          {item.fields.title} {item.fields.url} {item.fields.change}
+        </Text>
       ))}
     </View>
   );

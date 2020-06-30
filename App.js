@@ -70,7 +70,7 @@ export default class App extends Component<Props> {
       }),
       //credentials: 'include',
     };
-    const url = 'http://1eba733eead3.ngrok.io/users/token/';
+    const url = 'http://14100d4bc765.ngrok.io/users/token/';
 
     // if you want to notification using server,
     // do registry current user token
