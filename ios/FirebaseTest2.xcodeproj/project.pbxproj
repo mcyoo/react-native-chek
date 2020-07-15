@@ -60,6 +60,7 @@
 		571D1B2F7257F2F3B5BB762C /* Pods-FirebaseTest2-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTest2-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTest2-tvOSTests/Pods-FirebaseTest2-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D97EDDBF6DA714D67346639 /* Pods-FirebaseTest2-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTest2-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTest2-tvOS/Pods-FirebaseTest2-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5DEE9137582F1F080BF4DAC0 /* libPods-FirebaseTest2-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FirebaseTest2-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A43769624BADEB4006E9CCC /* FirebaseTest2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FirebaseTest2.entitlements; path = FirebaseTest2/FirebaseTest2.entitlements; sourceTree = "<group>"; };
 		8934A07BB0EDE660679CC0F6 /* libPods-FirebaseTest2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FirebaseTest2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		935AAE439CD6F0F9A55F7ED0 /* Pods-FirebaseTest2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTest2.release.xcconfig"; path = "Target Support Files/Pods-FirebaseTest2/Pods-FirebaseTest2.release.xcconfig"; sourceTree = "<group>"; };
 		A5A33E697838BB9FDF4876AD /* Pods-FirebaseTest2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTest2.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTest2/Pods-FirebaseTest2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		13B07FAE1A68108700A75B9A /* FirebaseTest2 */ = {
 			isa = PBXGroup;
 			children = (
+				7A43769624BADEB4006E9CCC /* FirebaseTest2.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -194,7 +196,6 @@
 				571D1B2F7257F2F3B5BB762C /* Pods-FirebaseTest2-tvOSTests.debug.xcconfig */,
 				187B09C3B9108970BE3382BC /* Pods-FirebaseTest2-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -629,6 +630,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FirebaseTest2/FirebaseTest2.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -656,6 +658,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FirebaseTest2/FirebaseTest2.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = FirebaseTest2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
