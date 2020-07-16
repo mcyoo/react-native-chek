@@ -4,12 +4,14 @@ import {useSelector, useDispatch} from 'react-redux';
 import {logIn, logOut} from '../redux/usersSlice';
 import firebase from 'react-native-firebase';
 import api from '../api';
-import Listview from '../screens/listviews';
+import {reset_state} from '../screens/listviews';
 import Save from '../components/save';
+import stateSet from '../components/stateSet';
 
 export default class extends React.Component {
   state = {
     isLoading: true,
+    status: false,
   };
   async componentDidMount() {
     this._checkPermission();
@@ -17,8 +19,7 @@ export default class extends React.Component {
   }
 
   componentWillUnmount() {
-    this.notificationListener();
-    this.notificationOpenedListener();
+    //this.notificationOpenedListener();
   }
 
   async _checkPermission() {
@@ -72,27 +73,33 @@ export default class extends React.Component {
       .notifications()
       .onNotification(notification => {
         //앱이 활성화 된 상태에서 요청되는 push 알림을 처리하게 됩니다.
+        alert('notiacive');
         console.log('onNotification', notification);
+        //reset_state();
+        //reset_state();
+        stateSet();
       });
 
     this.notificationOpenedListener = firebase
       .notifications()
       .onNotificationOpened(notificationOpen => {
         // foreground, background에서 실행 중일때, push 알림을 클릭하여 열 때, 해당 push 알림을 처리하게 됩니다.
-        console.log('onNotificationOpened', notificationOpen);
+        alert('notifore');
+        //console.log('onNotificationOpened', notificationOpen); 안나옴
       });
 
     const notificationOpen = await firebase
       .notifications()
       .getInitialNotification();
     if (notificationOpen) {
-      // push 알림을 클릭하여 열 때, 해당 push 알림을 처리하게 됩니다.
-      console.log('getInitialNotification', notificationOpen);
+      // 앱이 종료된 상황에서 push 알림을 클릭하여 열 때, 해당 push 알림을 처리하게 됩니다.
+      alert('notiback');
+      //console.log('getInitialNotification', notificationOpen); 안나옴
     }
   }
 
   render() {
-    const {isLoading, token} = this.state;
+    const {isLoading, token, status} = this.state;
     return isLoading ? <Text>Loading</Text> : <Save jwt={token} />; //To do loading screen
   }
 }

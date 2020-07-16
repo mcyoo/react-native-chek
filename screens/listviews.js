@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 import api from '../api';
 import {isUrl} from '../utils';
 import Swipeout from 'react-native-swipeout';
+import StateSet from '../components/stateSet';
 
 const Container = styled.View`
   flex: 1;
@@ -62,12 +63,17 @@ class FlatListItem extends Component {
   }
 }
 
+export const reset_state = this.set_state;
+
 export default ({jwt}) => {
   const [jwt_token, setJwt] = useState(jwt);
   const [user_data, setData] = useState('');
   const [state, setState] = useState(false);
   const dispatch = useDispatch();
 
+  set_state = () => {
+    console.log('asdfasfddfdsafdafsdfafsf');
+  };
   getData = async () => {
     try {
       const {data} = await api.urls(jwt_token);
