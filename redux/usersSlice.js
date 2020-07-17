@@ -16,10 +16,13 @@ const userSlice = createSlice({
       state.isLoggedIn = false;
       state.token = null;
     },
+    recap(state, action) {
+      state.isLoggedIn = true;
+    },
   },
 });
 
-export const {logIn, logOut} = userSlice.actions;
+export const {logIn, logOut, recap} = userSlice.actions;
 
 export const userSave = token => async dispatch => {
   try {

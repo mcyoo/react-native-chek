@@ -4,9 +4,10 @@ import {useSelector, useDispatch} from 'react-redux';
 import {logIn, logOut} from '../redux/usersSlice';
 import firebase from 'react-native-firebase';
 import api from '../api';
-import {reset_state} from '../screens/listviews';
+import ListView from '../screens/listviews';
 import Save from '../components/save';
 import stateSet from '../components/stateSet';
+import RNRestart from 'react-native-restart';
 
 export default class extends React.Component {
   state = {
@@ -77,7 +78,8 @@ export default class extends React.Component {
         console.log('onNotification', notification);
         //reset_state();
         //reset_state();
-        stateSet();
+        //stateSet();
+        RNRestart.Restart();
       });
 
     this.notificationOpenedListener = firebase
@@ -86,6 +88,7 @@ export default class extends React.Component {
         // foreground, background에서 실행 중일때, push 알림을 클릭하여 열 때, 해당 push 알림을 처리하게 됩니다.
         alert('notifore');
         //console.log('onNotificationOpened', notificationOpen); 안나옴
+        RNRestart.Restart();
       });
 
     const notificationOpen = await firebase

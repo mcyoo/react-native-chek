@@ -63,17 +63,12 @@ class FlatListItem extends Component {
   }
 }
 
-export const reset_state = this.set_state;
-
 export default ({jwt}) => {
   const [jwt_token, setJwt] = useState(jwt);
   const [user_data, setData] = useState('');
   const [state, setState] = useState(false);
   const dispatch = useDispatch();
 
-  set_state = () => {
-    console.log('asdfasfddfdsafdafsdfafsf');
-  };
   getData = async () => {
     try {
       const {data} = await api.urls(jwt_token);
@@ -104,3 +99,6 @@ export default ({jwt}) => {
     </Container>
   );
 };
+//export default ListView;
+
+//export const state = ListView.set_state();

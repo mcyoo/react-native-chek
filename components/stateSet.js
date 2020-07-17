@@ -1,9 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View, StatusBar} from 'react-native';
-import {reset_state, stat3e} from '../screens/listviews';
+import ListView from '../screens/listviews';
+import {recap} from '../redux/usersSlice';
+import {useDispatch} from 'react-redux';
 
 export default () => {
-  console.log('sadfffffff');
-  console.log(reset_state);
-  return <Text>asdff</Text>;
+  console.log('dsff');
+  const dispatch = useDispatch();
+  dispatch(recap());
+  return;
 };
