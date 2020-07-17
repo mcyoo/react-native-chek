@@ -5,7 +5,7 @@ const callApi = async (method, path, data, jwt) => {
     Authorization: jwt,
     'Content-Type': 'application/json',
   };
-  const baseUrl = 'http://a0209269538d.ngrok.io'; //to do version url
+  const baseUrl = 'http://10.0.2.2:8000'; //to do version url
   const fullUrl = `${baseUrl}${path}`;
   if (method === 'get' || method === 'delete') {
     return axios[method](fullUrl, {headers});
@@ -17,4 +17,5 @@ const callApi = async (method, path, data, jwt) => {
 export default {
   urls: token => callApi('get', '/users/token/', '', token),
   register: form => callApi('post', '/users/token/', form),
+  domain: (form, token) => callApi('post', '/domains/del/', form, token),
 };

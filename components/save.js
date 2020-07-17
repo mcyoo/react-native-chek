@@ -4,9 +4,11 @@ import {useDispatch} from 'react-redux';
 import {userSave} from '../redux/usersSlice';
 
 //to do loading screen
-export default ({jwt}) => {
+function save(jwt) {
+  console.log(jwt);
   const dispatch = useDispatch();
   console.log('im save');
   dispatch(userSave(jwt));
   return <Text>im save</Text>;
-};
+}
+export default save();

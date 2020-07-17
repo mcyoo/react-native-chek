@@ -5,22 +5,29 @@ import {logIn, logOut} from '../redux/usersSlice';
 import firebase from 'react-native-firebase';
 import api from '../api';
 import ListView from '../screens/listviews';
-import Save from '../components/save';
 import stateSet from '../components/stateSet';
 import RNRestart from 'react-native-restart';
+import {userSave} from '../redux/usersSlice';
+import getUrl from '../components/getData';
 
 export default class extends React.Component {
-  state = {
-    isLoading: true,
-    status: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+    };
+  }
+
+  update_state = value => {
+    console.log(value);
+    this.setState(prevState => {
+      user_data: value;
+    });
   };
+
   async componentDidMount() {
     this._checkPermission();
     this._listenForNotifications();
-  }
-
-  componentWillUnmount() {
-    //this.notificationOpenedListener();
   }
 
   async _checkPermission() {
@@ -28,7 +35,12 @@ export default class extends React.Component {
     console.log(enabled);
     if (enabled) {
       // user has permissions
-      this._updateTokenToServer();
+      if (this.props.isLoggedIn) {
+        this._getData();
+        //getUrl(this.props.jwt_token, this.update_state);
+      } else {
+        this._updateTokenToServer();
+      }
     } else {
       // user doesn't have permission
       this._requestPermission();
@@ -57,13 +69,43 @@ export default class extends React.Component {
         user_ver: Platform.Version,
         token: fcmToken,
       });
-      this.setState({
-        token,
-        isLoading: false,
-      });
       console.log(token);
+
+      console.log('save start');
+      this.props.dispatch(userSave(token));
+
+      this._getData();
     } catch (e) {
       alert('Server register Error');
+    }
+  }
+
+  async _getData() {
+    try {
+      console.log('this is _getData()');
+      const {data} = await api.urls(this.props.jwt_token);
+      console.log(data);
+      this.setState({
+        isLoading: false,
+        user_data: data,
+      });
+    } catch (e) {
+      alert('connect error');
+    }
+  }
+
+  async _domainDelete(index) {
+    try {
+      console.log(index);
+      const {status} = await api.domain({index: index}, this.props.jwt_token);
+      console.log(status);
+
+      if (status === 200) {
+        await this._getData();
+        console.log('delete');
+      }
+    } catch (e) {
+      alert('connect error');
     }
   }
 
@@ -79,7 +121,8 @@ export default class extends React.Component {
         //reset_state();
         //reset_state();
         //stateSet();
-        RNRestart.Restart();
+        //RNRestart.Restart();
+        this._getData();
       });
 
     this.notificationOpenedListener = firebase
@@ -88,7 +131,8 @@ export default class extends React.Component {
         // foreground, background에서 실행 중일때, push 알림을 클릭하여 열 때, 해당 push 알림을 처리하게 됩니다.
         alert('notifore');
         //console.log('onNotificationOpened', notificationOpen); 안나옴
-        RNRestart.Restart();
+        //RNRestart.Restart();
+        this._getData();
       });
 
     const notificationOpen = await firebase
@@ -102,7 +146,11 @@ export default class extends React.Component {
   }
 
   render() {
-    const {isLoading, token, status} = this.state;
-    return isLoading ? <Text>Loading</Text> : <Save jwt={token} />; //To do loading screen
+    const {isLoading, user_data} = this.state;
+    return isLoading ? (
+      <Text>Loading</Text>
+    ) : (
+      <ListView data={user_data} update={this} /> //getData={this._getData} />
+    ); //To do loading screen
   }
 }

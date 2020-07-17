@@ -7,6 +7,7 @@ import api from '../api';
 import {isUrl} from '../utils';
 import Swipeout from 'react-native-swipeout';
 import StateSet from '../components/stateSet';
+import RNRestart from 'react-native-restart';
 
 const Container = styled.View`
   flex: 1;
@@ -42,8 +43,9 @@ class FlatListItem extends Component {
       right: [
         {
           onPress: () => {
-            alert('delete');
-            this.props.state(false);
+            console.log(this.props.index);
+            this.props.update._domainDelete(this.props.index);
+            //RNRestart.Restart();
           },
           text: 'Delete',
           type: 'delete',
@@ -63,34 +65,17 @@ class FlatListItem extends Component {
   }
 }
 
-export default ({jwt}) => {
-  const [jwt_token, setJwt] = useState(jwt);
-  const [user_data, setData] = useState('');
-  const [state, setState] = useState(false);
+export default ({data, update}) => {
+  //const [user_data, setData] = useState(data);
   const dispatch = useDispatch();
 
-  getData = async () => {
-    try {
-      const {data} = await api.urls(jwt_token);
-      console.log(data);
-      setData(data);
-      setState(true);
-    } catch (e) {
-      alert('connect error');
-    }
-  };
-
-  if (state) {
-  } else {
-    getData();
-  }
   return (
     <Container>
       <Title>FlatList Test</Title>
       <FlatList
-        data={user_data}
+        data={data}
         renderItem={({item, index}) => {
-          return <FlatListItem index={index} item={item} state={setState} />;
+          return <FlatListItem index={index} item={item} update={update} />;
         }}
       />
       <TouchableOpacity onPress={() => dispatch(logOut())}>
