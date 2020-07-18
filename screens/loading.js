@@ -18,10 +18,10 @@ export default class extends React.Component {
     };
   }
 
-  update_state = value => {
-    console.log(value);
-    this.setState(prevState => {
-      user_data: value;
+  update_loading = () => {
+    this.setState({
+      isLoading: true,
+      user_data: [],
     });
   };
 
@@ -83,6 +83,7 @@ export default class extends React.Component {
   async _getData() {
     try {
       console.log('this is _getData()');
+      this.update_loading();
       const {data} = await api.urls(this.props.jwt_token);
       console.log(data);
       this.setState({
@@ -103,6 +104,20 @@ export default class extends React.Component {
       if (status === 200) {
         await this._getData();
         console.log('delete');
+      }
+    } catch (e) {
+      alert('connect error');
+    }
+  }
+
+  async _registUrl(url) {
+    try {
+      const {status} = await api.registUrl({url: url}, this.props.jwt_token);
+      console.log(status);
+
+      if (status === 200) {
+        await this._getData();
+        console.log('registURL');
       }
     } catch (e) {
       alert('connect error');

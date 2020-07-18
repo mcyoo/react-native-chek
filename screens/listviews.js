@@ -8,6 +8,8 @@ import {isUrl} from '../utils';
 import Swipeout from 'react-native-swipeout';
 import StateSet from '../components/stateSet';
 import RNRestart from 'react-native-restart';
+import Input from '../components/Input';
+import Btn from '../components/Btn';
 
 const Container = styled.View`
   flex: 1;
@@ -19,7 +21,7 @@ const Title = styled.Text`
 `;
 
 const List_text = styled.Text`
-  font-size: 30px;
+  font-size: 20px;
 `;
 
 class FlatListItem extends Component {
@@ -58,7 +60,9 @@ class FlatListItem extends Component {
     return (
       <Swipeout {...swipeSettings}>
         <Container>
-          <List_text>{this.props.item.title}</List_text>
+          <List_text>
+            {this.props.item.title} {this.props.item.url}
+          </List_text>
         </Container>
       </Swipeout>
     );
@@ -66,8 +70,27 @@ class FlatListItem extends Component {
 }
 
 export default ({data, update}) => {
-  //const [user_data, setData] = useState(data);
+  const [user_data, setData] = useState('');
   const dispatch = useDispatch();
+
+  const isFormValid = () => {
+    if (user_data === '') {
+      alert('All fields are required.');
+      return false;
+    }
+    if (!isUrl(user_data)) {
+      alert('URL is invalid');
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = () => {
+    if (!isFormValid()) {
+      return;
+    }
+    update._registUrl(user_data);
+  };
 
   return (
     <Container>
@@ -78,6 +101,16 @@ export default ({data, update}) => {
           return <FlatListItem index={index} item={item} update={update} />;
         }}
       />
+
+      <Input
+        value={user_data}
+        placeholder="URL"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        stateFn={setData}
+      />
+      <Btn text={'등록'} accent onPress={handleSubmit} />
+
       <TouchableOpacity onPress={() => dispatch(logOut())}>
         <Text>initalize redux store</Text>
       </TouchableOpacity>

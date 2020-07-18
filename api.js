@@ -7,7 +7,8 @@ const callApi = async (method, path, data, jwt) => {
   };
   const baseUrl = 'http://10.0.2.2:8000'; //to do version url
   const fullUrl = `${baseUrl}${path}`;
-  if (method === 'get' || method === 'delete') {
+  if (method === 'get') {
+    // || method === 'delete'
     return axios[method](fullUrl, {headers});
   } else {
     return axios[method](fullUrl, data, {headers});
@@ -17,5 +18,7 @@ const callApi = async (method, path, data, jwt) => {
 export default {
   urls: token => callApi('get', '/users/token/', '', token),
   register: form => callApi('post', '/users/token/', form),
-  domain: (form, token) => callApi('post', '/domains/del/', form, token),
+  domain: (form, token) => callApi('put', '/domains/del/', form, token),
+  registUrl: (form, token) =>
+    callApi('post', '/domains/registUrl/', form, token),
 };
