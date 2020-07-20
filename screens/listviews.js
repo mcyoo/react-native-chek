@@ -19,7 +19,7 @@ import Input from '../components/Input';
 import Btn from '../components/Btn';
 
 const Container = styled.View`
-  flex: 1;
+  display: flex;
 `;
 
 const Title = styled.Text`
