@@ -83,7 +83,7 @@ export default class extends React.Component {
   async _getData() {
     try {
       console.log('this is _getData()');
-      this.update_loading();
+      //this.update_loading();
       const {data} = await api.urls(this.props.jwt_token);
       console.log(data);
       this.setState({
@@ -118,6 +118,21 @@ export default class extends React.Component {
       if (status === 200) {
         await this._getData();
         console.log('registURL');
+      }
+    } catch (e) {
+      alert('connect error');
+    }
+  }
+
+  async _changeState(index) {
+    try {
+      console.log(index);
+      const {status} = await api.change({index: index}, this.props.jwt_token);
+      console.log(status);
+
+      if (status === 200) {
+        await this._getData();
+        console.log('chage_state');
       }
     } catch (e) {
       alert('connect error');

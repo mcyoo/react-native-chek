@@ -1,5 +1,12 @@
-import React, {useState, Component} from 'react';
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import React, {useState, Component, useCallback} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  Alert,
+  Linking,
+} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {logIn, logOut} from '../redux/usersSlice';
 import styled from 'styled-components/native';
@@ -31,6 +38,18 @@ class FlatListItem extends Component {
       activeRowKey: null,
     };
   }
+
+  handleClick = () => {
+    Linking.canOpenURL(this.props.item.url).then(supported => {
+      if (supported) {
+        Linking.openURL(this.props.item.url);
+        this.props.update._changeState(this.props.index);
+      } else {
+        console.log("Don't know how to open URI: " + this.props.item.url);
+      }
+    });
+  };
+
   render() {
     const swipeSettings = {
       autoClose: true,
@@ -59,11 +78,13 @@ class FlatListItem extends Component {
 
     return (
       <Swipeout {...swipeSettings}>
-        <Container>
-          <List_text>
-            {this.props.item.title} {this.props.item.url}
-          </List_text>
-        </Container>
+        <TouchableOpacity onPress={this.handleClick}>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <List_text>
+              {this.props.item.title} {this.props.item.url}
+            </List_text>
+          </View>
+        </TouchableOpacity>
       </Swipeout>
     );
   }
