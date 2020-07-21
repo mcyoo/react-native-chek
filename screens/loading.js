@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Platform} from 'react-native';
+import {View, Text, TouchableOpacity, Platform, rgba} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {logIn, logOut} from '../redux/usersSlice';
 import firebase from 'react-native-firebase';
@@ -9,6 +9,7 @@ import stateSet from '../components/stateSet';
 import RNRestart from 'react-native-restart';
 import {userSave} from '../redux/usersSlice';
 import getUrl from '../components/getData';
+import Loader from './loader';
 
 export default class extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ export default class extends React.Component {
   update_loading = () => {
     this.setState({
       isLoading: true,
+      noAuth: false,
       user_data: [],
     });
   };
@@ -54,7 +56,8 @@ export default class extends React.Component {
       await this._updateTokenToServer();
     } catch (error) {
       // User has rejected permissions
-      alert("you can't handle push notification");
+      this.setState({noAuth: true});
+      alert('알림 설정을 체크해주세요.');
     }
   }
 
@@ -152,7 +155,7 @@ export default class extends React.Component {
         //reset_state();
         //stateSet();
         //RNRestart.Restart();
-        this._getData();
+        //this._getData();
       });
 
     this.notificationOpenedListener = firebase
@@ -176,11 +179,23 @@ export default class extends React.Component {
   }
 
   render() {
-    const {isLoading, user_data} = this.state;
+    const {isLoading, user_data, noAuth} = this.state;
     return isLoading ? (
-      <Text>Loading</Text>
+      noAuth ? (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '(255,255,255,0.4)',
+          }}>
+          <Text style={{fontSize: 30, color: 'rgba(0,0,0,0.4)'}}>😰</Text>
+        </View>
+      ) : (
+        <Loader />
+      )
     ) : (
       <ListView data={user_data} update={this} /> //getData={this._getData} />
-    ); //To do loading screen
+    );
   }
 }

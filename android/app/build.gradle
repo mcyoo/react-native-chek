@@ -198,6 +198,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.0.0'
     implementation "com.google.firebase:firebase-messaging:20.0.0"
     implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
+    implementation project(':lottie-react-native')
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
