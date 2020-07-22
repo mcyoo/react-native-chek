@@ -34,10 +34,18 @@ const Text_five = styled.Text`
 `;
 
 //<ActivityIndicator color={accent ? 'white' : 'black'} />
-const Btn = ({loading = false, onPress, text, accent = false}) => (
-  <TouchableOpacity onPress={loading ? null : onPress}>
+const Btn = ({
+  loading = false,
+  onPress,
+  text,
+  accent = false,
+  prevent = false,
+}) => (
+  <TouchableOpacity onPress={prevent ? null : onPress}>
     <Button accent={accent}>
       {loading ? (
+        <ActivityIndicator color={accent ? 'white' : 'black'} />
+      ) : prevent ? (
         <Text_five accent={accent}>{text}</Text_five>
       ) : (
         <Text accent={accent}>{text}</Text>

@@ -1,39 +1,20 @@
-import React, {useState, Component, useCallback} from 'react';
+import React, {useState, Component} from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   FlatList,
-  Alert,
   Linking,
   StyleSheet,
-  Image,
-  StatusBar,
-  KeyboardAvoidingView,
   Clipboard,
   rgba,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
-import {logIn, logOut} from '../redux/usersSlice';
 import styled from 'styled-components/native';
-import api from '../api';
 import {isUrl} from '../utils';
 import Swipeout from 'react-native-swipeout';
-import StateSet from '../components/stateSet';
-import RNRestart from 'react-native-restart';
 import Input from '../components/Input';
 import Btn from '../components/Btn';
-
-const Container = styled.View``;
-
-const Title = styled.Text`
-  font-size: 40px;
-  border: 2px solid grey;
-`;
-
-const List_text = styled.Text`
-  font-size: 20px;
-`;
+import Loader from './loader';
 
 function Item({item}) {
   return (
@@ -73,6 +54,7 @@ class FlatListItem extends Component {
         Linking.openURL(this.props.item.url);
         this.props.update._changeState(this.props.index);
       } else {
+        alert('알 수 없는 URL');
         console.log("Don't know how to open URI: " + this.props.item.url);
       }
     });
@@ -95,7 +77,6 @@ class FlatListItem extends Component {
           onPress: () => {
             console.log(this.props.index);
             this.props.update._domainDelete(this.props.index);
-            //RNRestart.Restart();
           },
           text: 'Delete',
           type: 'delete',
@@ -115,18 +96,18 @@ class FlatListItem extends Component {
   }
 }
 
-export default ({data, update}) => {
+export default ({data, update, isLoading}) => {
   const [user_data, setData] = useState('');
-  const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const isFormValid = () => {
     if (user_data === '') {
-      alert('All fields are required.');
+      alert('URL 주소를 입력해 주세요.');
       return false;
     }
     if (!isUrl(user_data)) {
-      alert('URL is invalid');
+      alert('잘못된 URL 주소입니다.');
       return false;
     }
     return true;
@@ -140,8 +121,10 @@ export default ({data, update}) => {
     if (!isFormValid()) {
       return;
     }
+    setLoading(true);
     update._registUrl(user_data);
     setData('');
+    setLoading(false);
   };
 
   const fetchCopiedText = async () => {
@@ -182,15 +165,21 @@ export default ({data, update}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.4)'}}>
+          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.3)'}}>
             🧐 ➡️ 변화 없음
           </Text>
-          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.4)', marginTop: 6}}>
+          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.3)', marginTop: 6}}>
             😲 ➡️ 변화 있음
           </Text>
         </View>
       )}
-      <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'flex-end',
+          marginBottom: 12,
+        }}>
         <Input
           value={user_data}
           placeholder="URL"
@@ -201,15 +190,13 @@ export default ({data, update}) => {
         <Btn text={'붙여넣기'} accent onPress={fetchCopiedText} />
         <Btn
           text={'등록'}
-          loading={checkData_Five()}
+          loading={loading}
           accent
           onPress={handleSubmit}
+          prevent={checkData_Five()}
         />
       </View>
-
-      <TouchableOpacity onPress={() => dispatch(logOut())}>
-        <Text>initalize redux store</Text>
-      </TouchableOpacity>
+      {isLoading ? <Loader /> : null}
     </View>
   );
 };
@@ -224,7 +211,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     backgroundColor: '#FFF',
-    width: '92%',
+    width: '95%',
     flex: 1,
     alignSelf: 'center',
     flexDirection: 'row',
