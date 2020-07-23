@@ -21,7 +21,7 @@ export default class Loader extends React.Component {
     return (
       <AnimatedLoader
         visible={visible}
-        overlayColor="rgba(255,255,255,0.4)"
+        overlayColor="rgba(0,0,0,0.4)"
         source={require('../assets/toast.json')}
         animationStyle={styles.lottie}
         speed={1}

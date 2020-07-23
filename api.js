@@ -5,7 +5,7 @@ const callApi = async (method, path, data, jwt) => {
     Authorization: jwt,
     'Content-Type': 'application/json',
   };
-  const baseUrl = 'http://10.0.2.2:8000'; //to do version url
+  const baseUrl = 'http://www.machapi.site'; //to do version url
   const fullUrl = `${baseUrl}${path}`;
   if (method === 'get' || method === 'delete') {
     return axios[method](fullUrl, {headers});

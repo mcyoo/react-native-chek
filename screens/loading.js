@@ -187,7 +187,7 @@ export default class extends React.Component {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Text style={{fontSize: 50, color: 'rgba(0,0,0,0.3)'}}>😰</Text>
+        <Text style={{fontSize: 50, color: 'rgba(0,0,0,0.3)'}}>😂</Text>
         <Text style={{fontSize: 30, color: 'rgba(0,0,0,0.3)'}}>
           알림 설정 해주세요.
         </Text>

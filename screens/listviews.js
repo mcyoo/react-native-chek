@@ -33,7 +33,7 @@ function Item({item}) {
         {item.change ? (
           <Text style={{fontSize: 30}}>😲</Text>
         ) : (
-          <Text style={{fontSize: 30}}>🧐</Text>
+          <Text style={{fontSize: 30}}>😳</Text>
         )}
       </View>
     </View>
@@ -108,6 +108,7 @@ export default ({data, update, isLoading}) => {
     }
     if (!isUrl(user_data)) {
       alert('잘못된 URL 주소입니다.');
+      setData('');
       return false;
     }
     return true;
@@ -165,10 +166,10 @@ export default ({data, update, isLoading}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.3)'}}>
-            🧐 ➡️ 변화 없음
+          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.2)'}}>
+            😳 ➡️ 변화 없음
           </Text>
-          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.3)', marginTop: 6}}>
+          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.2)', marginTop: 6}}>
             😲 ➡️ 변화 있음
           </Text>
         </View>
@@ -205,7 +206,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    marginTop: 20,
   },
   listItem: {
     margin: 10,
