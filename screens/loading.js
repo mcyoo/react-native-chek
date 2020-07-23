@@ -100,6 +100,10 @@ export default class extends React.Component {
   async _domainDelete(index) {
     console.log('delete');
     try {
+      this.setState({
+        isLoading: true,
+      });
+
       const {status} = await api.domain({index: index}, this.props.jwt_token);
       console.log(status);
 
@@ -116,6 +120,10 @@ export default class extends React.Component {
   async _registUrl(url) {
     console.log('registURL');
     try {
+      this.setState({
+        isLoading: true,
+      });
+
       const {status} = await api.registUrl({url: url}, this.props.jwt_token);
       console.log(status);
 
@@ -132,6 +140,10 @@ export default class extends React.Component {
   async _changeState(index) {
     console.log('chage_state');
     try {
+      this.setState({
+        isLoading: true,
+      });
+
       const {status} = await api.change({index: index}, this.props.jwt_token);
       console.log(status);
 

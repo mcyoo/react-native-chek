@@ -11,9 +11,9 @@ export default class Loader extends React.Component {
   componentDidMount() {
     setInterval(() => {
       this.setState({
-        visible: this.state.visible,
+        visible: false,
       });
-    }, 50000);
+    }, 8000);
   }
 
   render() {
@@ -21,7 +21,7 @@ export default class Loader extends React.Component {
     return (
       <AnimatedLoader
         visible={visible}
-        overlayColor="rgba(0,0,0,0.4)"
+        overlayColor="rgba(0,0,0,0.5)"
         source={require('../assets/toast.json')}
         animationStyle={styles.lottie}
         speed={1}
@@ -31,7 +31,7 @@ export default class Loader extends React.Component {
 }
 const styles = StyleSheet.create({
   lottie: {
-    width: 250,
-    height: 250,
+    width: 270,
+    height: 270,
   },
 });
