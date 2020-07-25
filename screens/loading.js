@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Platform, rgba} from 'react-native';
 import firebase from 'react-native-firebase';
 import api from '../api';
 import ListView from '../screens/listviews';
 import {userSave} from '../redux/usersSlice';
+import SplashScreen from 'react-native-splash-screen';
 
 export default class extends React.Component {
   constructor(props) {
@@ -18,6 +19,9 @@ export default class extends React.Component {
   async componentDidMount() {
     this._checkPermission();
     this._listenForNotifications();
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 3000);
   }
 
   async _checkPermission() {
