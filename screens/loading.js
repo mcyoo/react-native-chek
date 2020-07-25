@@ -205,7 +205,7 @@ export default class extends React.Component {
         </Text>
       </View>
     ) : (
-      <ListView data={user_data} update={this} isLoading={isLoading} /> //getData={this._getData} />
+      <ListView data={user_data} update={this} isLoading={isLoading} />
     );
   }
 }

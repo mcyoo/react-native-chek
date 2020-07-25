@@ -8,6 +8,9 @@ import {
   StyleSheet,
   Clipboard,
   rgba,
+  StatusBar,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import styled from 'styled-components/native';
 import {isUrl} from '../utils';
@@ -15,6 +18,9 @@ import Swipeout from 'react-native-swipeout';
 import Input from '../components/Input';
 import Btn from '../components/Btn';
 import Loader from './loader';
+import DismissKeyboard from '../components/DismissKeyboard';
+
+const isAndroid = Platform.OS === 'android';
 
 function Item({item}) {
   return (
@@ -148,7 +154,8 @@ export default ({data, update, isLoading}) => {
     }
   };
   return (
-    <View style={styles.container}>
+    <View style={isAndroid ? styles.android_container : styles.ios_container}>
+      <StatusBar barStyle={isAndroid ? 'default' : 'dark-content'} />
       {checkData() ? (
         <FlatList
           style={{flex: 1}}
@@ -160,52 +167,61 @@ export default ({data, update, isLoading}) => {
           }}
         />
       ) : (
+        <DismissKeyboard>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.2)'}}>
+              😳 ➡️ 변화 없음
+            </Text>
+            <Text
+              style={{fontSize: 20, color: 'rgba(0,0,0,0.2)', marginTop: 6}}>
+              😲 ➡️ 변화 있음
+            </Text>
+          </View>
+        </DismissKeyboard>
+      )}
+      <KeyboardAvoidingView behavior={isAndroid ? 'height' : 'position'}>
         <View
           style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
+            flexDirection: 'row',
+            alignItems: 'flex-end',
+            marginBottom: 12,
           }}>
-          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.2)'}}>
-            😳 ➡️ 변화 없음
-          </Text>
-          <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.2)', marginTop: 6}}>
-            😲 ➡️ 변화 있음
-          </Text>
+          <Input
+            value={user_data}
+            placeholder="URL"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            stateFn={setData}
+          />
+          <Btn text={'붙여넣기'} accent onPress={fetchCopiedText} />
+          <Btn
+            text={'등록'}
+            loading={loading}
+            accent
+            onPress={handleSubmit}
+            prevent={checkData_Five()}
+          />
         </View>
-      )}
-
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'flex-end',
-          marginBottom: 12,
-        }}>
-        <Input
-          value={user_data}
-          placeholder="URL"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          stateFn={setData}
-        />
-        <Btn text={'붙여넣기'} accent onPress={fetchCopiedText} />
-        <Btn
-          text={'등록'}
-          loading={loading}
-          accent
-          onPress={handleSubmit}
-          prevent={checkData_Five()}
-        />
-      </View>
+      </KeyboardAvoidingView>
       {isLoading ? <Loader /> : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  android_container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  ios_container: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingTop: 20,
   },
   listItem: {
     margin: 10,
