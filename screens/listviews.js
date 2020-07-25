@@ -22,6 +22,11 @@ import DismissKeyboard from '../components/DismissKeyboard';
 
 const isAndroid = Platform.OS === 'android';
 
+const Image = styled.Image`
+  width: 100%;
+  height: 100%;
+`;
+
 function Item({item}) {
   return (
     <View style={styles.listItem}>
@@ -37,9 +42,11 @@ function Item({item}) {
           alignItems: 'center',
         }}>
         {item.change ? (
-          <Text style={{fontSize: 30}}>😲</Text>
+          <Image source={require('../assets/1F64B_color.png')} />
         ) : (
-          <Text style={{fontSize: 30}}>😳</Text>
+          //<Text style={{fontSize: 30}}>😲</Text>
+          <Image source={require('../assets/1F9D1_color.png')} />
+          //<Text style={{fontSize: 30}}>😳</Text>
         )}
       </View>
     </View>
@@ -173,15 +180,8 @@ export default ({data, update, isLoading}) => {
               flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
-            }}>
-            <Text style={{fontSize: 20, color: 'rgba(0,0,0,0.2)'}}>
-              😳 ➡️ 변화 없음
-            </Text>
-            <Text
-              style={{fontSize: 20, color: 'rgba(0,0,0,0.2)', marginTop: 6}}>
-              😲 ➡️ 변화 있음
-            </Text>
-          </View>
+            }}
+          />
         </DismissKeyboard>
       )}
       <KeyboardAvoidingView behavior={isAndroid ? 'height' : 'position'}>

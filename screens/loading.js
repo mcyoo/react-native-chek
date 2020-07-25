@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text, Platform, rgba} from 'react-native';
+import {View, Text, Platform, rgba, Image} from 'react-native';
 import firebase from 'react-native-firebase';
 import api from '../api';
 import ListView from '../screens/listviews';
@@ -17,11 +17,22 @@ export default class extends React.Component {
   }
 
   async componentDidMount() {
-    this._checkPermission();
-    this._listenForNotifications();
+    //this.loadAssets();
     setTimeout(() => {
       SplashScreen.hide();
-    }, 3000);
+    }, 2000);
+    this._checkPermission();
+    this._listenForNotifications();
+  }
+
+  async loadAssets() {
+    const images = [
+      require('../assets/1F9D1_color.png'),
+      require('../assets/1F64B_color.png'),
+    ];
+    images.map(image => {
+      Image.prefetch(image);
+    });
   }
 
   async _checkPermission() {

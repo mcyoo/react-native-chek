@@ -19,10 +19,10 @@
 		2DCD954D1E0B4F2C00145EB5 /* FirebaseTest2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FirebaseTest2Tests.m */; };
 		312F2687C73C48027758DB36 /* libPods-FirebaseTest2-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6F8B56A304C5FA44C43B48 /* libPods-FirebaseTest2-tvOSTests.a */; };
 		7A03973A24CBCD2A00EB6171 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A03973924CBCD2A00EB6171 /* SplashScreen.storyboard */; };
-		7A05526F24CACD31009FB99C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A05526E24CACD31009FB99C /* GoogleService-Info.plist */; };
 		7A91F94C24CAD08A00F562ED /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA14C2624CAC5B80047D5B5 /* libsqlite3.tbd */; };
 		7A91F94D24CAD09400F562ED /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA14C2824CAC5E00047D5B5 /* libz.tbd */; };
 		7A91F94E24CAD09C00F562ED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA14C2A24CAC5F20047D5B5 /* libc++.tbd */; };
+		7AA4DD7624CC13AC00747EA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AA4DD7524CC13AC00747EA9 /* GoogleService-Info.plist */; };
 		C7062437141E98D12F69BF41 /* libPods-FirebaseTest2-FirebaseTest2Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F11B6D6B3C42A0C678CAC6E /* libPods-FirebaseTest2-FirebaseTest2Tests.a */; };
 		CA3FA4079B73E63567CA95B4 /* libPods-FirebaseTest2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CB362E35FD1354DBA0C237 /* libPods-FirebaseTest2.a */; };
 /* End PBXBuildFile section */
@@ -65,11 +65,11 @@
 		69C9D1E35C012827DDF7A702 /* Pods-FirebaseTest2-FirebaseTest2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTest2-FirebaseTest2Tests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTest2-FirebaseTest2Tests/Pods-FirebaseTest2-FirebaseTest2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A22D88EFBBB74C36EC55054 /* Pods-FirebaseTest2-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTest2-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseTest2-tvOSTests/Pods-FirebaseTest2-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7A03973924CBCD2A00EB6171 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
-		7A05526E24CACD31009FB99C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7A43769624BADEB4006E9CCC /* FirebaseTest2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FirebaseTest2.entitlements; path = FirebaseTest2/FirebaseTest2.entitlements; sourceTree = "<group>"; };
 		7AA14C2624CAC5B80047D5B5 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7AA14C2824CAC5E00047D5B5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7AA14C2A24CAC5F20047D5B5 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		7AA4DD7524CC13AC00747EA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F11B6D6B3C42A0C678CAC6E /* libPods-FirebaseTest2-FirebaseTest2Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FirebaseTest2-FirebaseTest2Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88CB362E35FD1354DBA0C237 /* libPods-FirebaseTest2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FirebaseTest2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3EA0B16A8FF090AE3BE753 /* libPods-FirebaseTest2-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FirebaseTest2-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,7 +139,7 @@
 		13B07FAE1A68108700A75B9A /* FirebaseTest2 */ = {
 			isa = PBXGroup;
 			children = (
-				7A05526E24CACD31009FB99C /* GoogleService-Info.plist */,
+				7AA4DD7524CC13AC00747EA9 /* GoogleService-Info.plist */,
 				7A43769624BADEB4006E9CCC /* FirebaseTest2.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -359,9 +359,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				7AA4DD7624CC13AC00747EA9 /* GoogleService-Info.plist in Resources */,
 				7A03973A24CBCD2A00EB6171 /* SplashScreen.storyboard in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				7A05526F24CACD31009FB99C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
