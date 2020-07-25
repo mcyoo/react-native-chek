@@ -18,6 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* FirebaseTest2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FirebaseTest2Tests.m */; };
 		312F2687C73C48027758DB36 /* libPods-FirebaseTest2-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE6F8B56A304C5FA44C43B48 /* libPods-FirebaseTest2-tvOSTests.a */; };
+		7A03973A24CBCD2A00EB6171 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A03973924CBCD2A00EB6171 /* SplashScreen.storyboard */; };
 		7A05526F24CACD31009FB99C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A05526E24CACD31009FB99C /* GoogleService-Info.plist */; };
 		7A91F94C24CAD08A00F562ED /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA14C2624CAC5B80047D5B5 /* libsqlite3.tbd */; };
 		7A91F94D24CAD09400F562ED /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA14C2824CAC5E00047D5B5 /* libz.tbd */; };
@@ -63,6 +64,7 @@
 		68B9BA7E7C0EF85B32165F92 /* Pods-FirebaseTest2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTest2.release.xcconfig"; path = "Target Support Files/Pods-FirebaseTest2/Pods-FirebaseTest2.release.xcconfig"; sourceTree = "<group>"; };
 		69C9D1E35C012827DDF7A702 /* Pods-FirebaseTest2-FirebaseTest2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTest2-FirebaseTest2Tests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseTest2-FirebaseTest2Tests/Pods-FirebaseTest2-FirebaseTest2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A22D88EFBBB74C36EC55054 /* Pods-FirebaseTest2-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseTest2-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-FirebaseTest2-tvOSTests/Pods-FirebaseTest2-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		7A03973924CBCD2A00EB6171 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		7A05526E24CACD31009FB99C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7A43769624BADEB4006E9CCC /* FirebaseTest2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FirebaseTest2.entitlements; path = FirebaseTest2/FirebaseTest2.entitlements; sourceTree = "<group>"; };
 		7AA14C2624CAC5B80047D5B5 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -146,6 +148,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				7A03973924CBCD2A00EB6171 /* SplashScreen.storyboard */,
 			);
 			name = FirebaseTest2;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				7A03973A24CBCD2A00EB6171 /* SplashScreen.storyboard in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7A05526F24CACD31009FB99C /* GoogleService-Info.plist in Resources */,
 			);
