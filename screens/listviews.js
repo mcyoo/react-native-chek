@@ -194,7 +194,7 @@ export default ({data, update, isLoading}) => {
           <Input
             value={user_data}
             placeholder="URL"
-            keyboardType="email-address"
+            keyboardType={isAndroid ? 'default' : 'url'}
             autoCapitalize="none"
             stateFn={setData}
           />
